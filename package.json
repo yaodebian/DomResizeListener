@@ -11,5 +11,6 @@
     "listener"
   ],
   "author": "yaodebian",
+  "repository": "https://github.com/yaodebian/DomResizeListener.git",
   "license": "MIT"
 }
