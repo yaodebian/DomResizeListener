@@ -68,8 +68,6 @@ remove the dom's listener.
 
 remove all listeners.
 
-remove
-
 ## License
 
 MIT
