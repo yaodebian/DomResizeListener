@@ -1,8 +1,7 @@
-// dom resize watcher class
 function DomResizeWatcher(dom, callback) {
-  // public attribute
-  this.doms = []
-  this.callbacks = []
+  // private attribute
+  var doms = []
+  var callbacks = []
 
   // private method: if size change, excute callback
   function resizeCall(widths, heights, doms, callbacks) {
@@ -19,10 +18,7 @@ function DomResizeWatcher(dom, callback) {
       if (tempWidth !== widths[i] || tempHeight !== heights[i]) {
         widths[i] = tempWidth
         heights[i] = tempHeight
-        callback({
-          width: tempWidth,
-          height: tempHeight
-        })
+        callbacks[i](doms[i])
       } 
     }
 
@@ -48,26 +44,26 @@ function DomResizeWatcher(dom, callback) {
     // if dom is not undefined
     if (dom) {
       var func = typeof callback === 'function' ? callback : function() {}
-      this.doms.push(dom)
-      this.callbacks.push(func)
+      doms.push(dom)
+      callbacks.push(func)
     }
   }
 
   // public method: remove dom listener
   this.remove = function (dom) {
-    var index = this.doms.indexOf(dom)
-    this.doms.splice(index, 1)
-    this.callbacks.splice(index, 1)
+    var index = doms.indexOf(dom)
+    doms.splice(index, 1)
+    callbacks.splice(index, 1)
   }
 
   // public method: remove all listener
   this.clear = function () {
-    this.doms = []
-    this.callbacks = []
+    doms = []
+    callbacks = []
   }
 
   // add listener
   this.addListener(dom, callback)
 
-  init(this.doms, this.callbacks)
+  init(doms, callbacks)
 }
