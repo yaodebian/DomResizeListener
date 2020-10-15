@@ -9,13 +9,18 @@ function resizeCall(sizeInfo) {
 }
 
 let domResizeWatcher = new DomResizeWatcher(boxElement, resizeCall)
-domResizeWatcher.addListener(boxContentElement, function () {
+
+function test() {
   console.log(111)
-})
-domResizeWatcher.addListener(boxContentElement, function () {
+}
+
+function test2() {
   console.log(222)
-})
+}
+
+domResizeWatcher.addListener(boxContentElement, test)
+domResizeWatcher.addListener(boxContentElement, test2)
 
 setTimeout(function() {
-  domResizeWatcher.remove(boxContentElement)
+  domResizeWatcher.remove(test)
 }, 10000)

@@ -64,15 +64,17 @@ function DomResizeWatcher(dom, callback) {
     }
   }
 
-  // public method: remove dom listener
-  this.remove = function (dom) {
-    var index = doms.indexOf(dom)
-    while (index > -1) {
-      doms.splice(index, 1)
-      callbacks.splice(index, 1)
-      index = doms.indexOf(dom)
-    }
+ // public method: remove dom listener
+ this.remove = function (target) {
+  var checkIsElement = isElement(target)
+  var targetList = checkIsElement ? doms : callbacks
+  var index = targetList.indexOf(target)
+  while (index > -1) {
+    doms.splice(index, 1)
+    callbacks.splice(index, 1)
+    index = targetList.indexOf(target)
   }
+}
 
   // public method: remove all listener
   this.clear = function () {
