@@ -8,7 +8,6 @@ function DomResizeWatcher(dom, callback) {
   function resizeCall(width, height, dom, callback) {
     let tempWidth = '', tempHeight = ''
     try {
-      console.log(null.aaa)
       tempWidth = dom.clientWidth
       tempHeight = dom.clientHeight 
     } catch (error) {
@@ -31,11 +30,6 @@ function DomResizeWatcher(dom, callback) {
 
     // first, get the initial width and height
     requestAnimationFrame(resizeCall.bind(null, width, height, dom, callback))
-  }
-
-  // public method: stop watch
-  this.remove = function() {
-
   }
 
   init(dom, callback)

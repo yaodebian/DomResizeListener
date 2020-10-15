@@ -12,3 +12,10 @@ let domResizeWatcher = new DomResizeWatcher(boxElement, resizeCall)
 domResizeWatcher.addListener(boxContentElement, function () {
   console.log(111)
 })
+domResizeWatcher.addListener(boxContentElement, function () {
+  console.log(222)
+})
+
+setTimeout(function() {
+  domResizeWatcher.remove(boxContentElement)
+}, 10000)

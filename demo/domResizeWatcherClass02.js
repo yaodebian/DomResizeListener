@@ -52,8 +52,11 @@ function DomResizeWatcher(dom, callback) {
   // public method: remove dom listener
   this.remove = function (dom) {
     var index = doms.indexOf(dom)
-    doms.splice(index, 1)
-    callbacks.splice(index, 1)
+    while (index > -1) {
+      doms.splice(index, 1)
+      callbacks.splice(index, 1)
+      index = doms.indexOf(dom)
+    }
   }
 
   // public method: remove all listener
