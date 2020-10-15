@@ -1,3 +1,19 @@
+//Returns true if it is a DOM node
+function isNode(o){
+  return (
+    typeof Node === "object" ? o instanceof Node : 
+    o && typeof o === "object" && typeof o.nodeType === "number" && typeof o.nodeName==="string"
+  )
+}
+
+//Returns true if it is a DOM element    
+function isElement(o){
+  return (
+    typeof HTMLElement === "object" ? o instanceof HTMLElement : //DOM2
+    o && typeof o === "object" && o !== null && o.nodeType === 1 && typeof o.nodeName==="string"
+  )
+}
+
 function DomResizeWatcher(dom, callback) {
   // private attribute
   var doms = []
@@ -38,14 +54,13 @@ function DomResizeWatcher(dom, callback) {
   // public method: add listener of a dom
   this.addListener = function (dom, callback) {
     // if callback is not undefined, dom is required
-    if (!dom && callback) {
-      throw new Error('Attribute required: attribute dom is required')
+    if (!dom || !callback) {
+      throw new Error('Attribute required: attribute dom and callback is required')
     }
-    // if dom is not undefined
-    if (dom) {
-      var func = typeof callback === 'function' ? callback : function() {}
+    // if dom and callback is not undefined
+    if (isElement(dom) && typeof callback === 'function') {
       doms.push(dom)
-      callbacks.push(func)
+      callbacks.push(callback)
     }
   }
 
