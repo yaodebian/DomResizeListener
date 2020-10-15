@@ -1,6 +1,6 @@
 {
   "name": "dom-resize-listener",
-  "version": "0.0.8",
+  "version": "0.0.9",
   "description": "A dom resize listener base on javascript.",
   "main": "lib/domResizeListener.js",
   "scripts": {
