@@ -2,16 +2,16 @@
   var lastTime = 0;
   var vendors = ['webkit', 'moz'];
  
-  //如果window.requestAnimationFrame为undefined先尝试浏览器前缀是否兼容
+  // if window.requestAnimationFrame is undefined, we try to use prefix definition.
   for(var x = 0; x < vendors.length && !window.requestAnimationFrame; ++x) {
     window.requestAnimationFrame = window[vendors[x] + 'RequestAnimationFrame'];
-    window.cancelAnimationFrame = window[vendors[x] + 'CancelAnimationFrame'] ||//webkit中此取消方法的名字变了
+    window.cancelAnimationFrame = window[vendors[x] + 'CancelAnimationFrame'] || // the name is different in webkit browser
                                   window[vendors[x] + 'CancelRequestAnimationFrame'];
   }
  
-  //如果仍然不兼容，则使用setTimeOut进行兼容操作
+  // if prefix definition is not compatible, we are using setTimeout.
   if(!window.requestAnimationFrame) {
-    window.requestAnimationFrame = function(callback, element) {
+    window.requestAnimationFrame = function(callback) {
       var currTime = new Date().getTime();
       var timeToCall = Math.max(0, 16.7 - (currTime - lastTime));
       var id = window.setTimeout(function() {

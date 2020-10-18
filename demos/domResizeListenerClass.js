@@ -1,5 +1,5 @@
 // dom resize watcher class
-function DomResizeWatcher(dom, callback) {
+function DomResizeListener(dom, callback) {
   // public attribute
   this.dom = dom
   this.callback = callback

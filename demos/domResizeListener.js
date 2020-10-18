@@ -14,7 +14,7 @@ function resizeCall (width, height, dom, callback) {
 }
 
 // Dom Resize Watcher Script
-function domResizeWatcher(dom, callback) {
+function domResizeListener(dom, callback) {
   let width = ''
   let height = ''
 
@@ -24,7 +24,7 @@ function domResizeWatcher(dom, callback) {
 
 // get the target element and watch it's size change
 var boxElement = document.getElementById('box')
-domResizeWatcher(boxElement, function (sizeInfo) {
+domResizeListener(boxElement, function (sizeInfo) {
   var boxContentElement = document.getElementById('box-content')
   boxContentElement.innerText = 'width: ' + sizeInfo.width + ', height: ' + sizeInfo.height
 })

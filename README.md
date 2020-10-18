@@ -60,7 +60,7 @@ var domResizeListener = new DomResizeListener(box, callback)
 
 By this method, you can listen a dom's size and excute callback function when the size change. No matter how many elements are listened, only one listener is needed because we set an Array internal to store elements.
 
-**remove:** Func(dom)
+**remove:** Func(flag) (flag can be a dom or a callback which is used to listen)
 
 remove the dom's listener.
 

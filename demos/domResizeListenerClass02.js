@@ -14,7 +14,7 @@ function isElement(o){
   )
 }
 
-function DomResizeWatcher(dom, callback) {
+function DomResizeListener(dom, callback) {
   // private attribute
   var doms = []
   var callbacks = []

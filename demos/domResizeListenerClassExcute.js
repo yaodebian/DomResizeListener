@@ -7,4 +7,4 @@ function resizeCall(sizeInfo) {
   boxContentElement.innerText = 'width: ' + sizeInfo.width + ', height: ' + sizeInfo.height
 }
 
-let domResizeWatcher = new DomResizeWatcher(boxElement, resizeCall)
+let domResizeListener = new DomResizeListener(boxElement, resizeCall)
