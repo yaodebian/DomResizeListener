@@ -1,7 +1,7 @@
 // excute when the dom resize
 function resizeCall () {
-  var width = '',
-  height = ''
+  var width = ''
+  var height = ''
   var boxElement = document.getElementById('box')
   var boxContentElement = document.getElementById('box-content')
 

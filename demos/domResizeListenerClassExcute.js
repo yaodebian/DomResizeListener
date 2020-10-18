@@ -2,9 +2,9 @@
 var boxElement = document.getElementById('box')
 
 // resize callback
-function resizeCall(sizeInfo) {
+function resizeCall (sizeInfo) {
   var boxContentElement = document.getElementById('box-content')
   boxContentElement.innerText = 'width: ' + sizeInfo.width + ', height: ' + sizeInfo.height
 }
 
-let domResizeListener = new DomResizeListener(boxElement, resizeCall)
+var domResizeListener = new DomResizeListener(boxElement, resizeCall)

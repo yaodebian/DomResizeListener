@@ -4,7 +4,12 @@
   "description": "A dom resize listener base on javascript.",
   "main": "lib/domResizeListener.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "lint": "eslint --fix ./"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "npm run lint"
+    }
   },
   "bin": {
     "domResizeListener": "lib/domResizeListener.js"
@@ -17,5 +22,14 @@
   ],
   "author": "yaodebian",
   "repository": "https://github.com/yaodebian/DomResizeListener.git",
-  "license": "MIT"
+  "license": "MIT",
+  "devDependencies": {
+    "eslint": "^7.11.0",
+    "eslint-config-standard": "^14.1.1",
+    "eslint-plugin-import": "^2.22.1",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-promise": "^4.2.1",
+    "eslint-plugin-standard": "^4.0.1",
+    "husky": "^4.3.0"
+  }
 }

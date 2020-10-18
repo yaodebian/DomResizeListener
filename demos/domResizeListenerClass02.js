@@ -1,32 +1,32 @@
-//Returns true if it is a DOM node
-function isNode(o){
+// Returns true if it is a DOM node
+function isNode (o) {
   return (
-    typeof Node === "object" ? o instanceof Node : 
-    o && typeof o === "object" && typeof o.nodeType === "number" && typeof o.nodeName==="string"
+    typeof Node === 'object' ? o instanceof Node
+      : o && typeof o === 'object' && typeof o.nodeType === 'number' && typeof o.nodeName === 'string'
   )
 }
 
-//Returns true if it is a DOM element    
-function isElement(o){
+// Returns true if it is a DOM element
+function isElement (o) {
   return (
-    typeof HTMLElement === "object" ? o instanceof HTMLElement : //DOM2
-    o && typeof o === "object" && o !== null && o.nodeType === 1 && typeof o.nodeName==="string"
+    typeof HTMLElement === 'object' ? o instanceof HTMLElement // DOM2
+      : o && typeof o === 'object' && o !== null && o.nodeType === 1 && typeof o.nodeName === 'string'
   )
 }
 
-function DomResizeListener(dom, callback) {
+function DomResizeListener (dom, callback) {
   // private attribute
   var doms = []
   var callbacks = []
 
   // private method: if size change, excute callback
-  function resizeCall(widths, heights, doms, callbacks) {
+  function resizeCall (widths, heights, doms, callbacks) {
     var len = doms.length
     for (var i = 0; i < len; i++) {
-      var tempWidth = '', tempHeight = ''
+      var tempWidth = ''; var tempHeight = ''
       try {
         tempWidth = doms[i].clientWidth
-        tempHeight = doms[i].clientHeight 
+        tempHeight = doms[i].clientHeight
       } catch (error) {
         console.log('error', error)
         continue
@@ -35,14 +35,14 @@ function DomResizeListener(dom, callback) {
         widths[i] = tempWidth
         heights[i] = tempHeight
         callbacks[i](doms[i])
-      } 
+      }
     }
 
     window.requestAnimationFrame(resizeCall.bind(null, widths, heights, doms, callbacks))
   }
 
   // private method: init watcher
-  function init(doms, callbacks) {
+  function init (doms, callbacks) {
     var len = doms.length
     var widths = new Array(len)
     var heights = new Array(len)
@@ -64,17 +64,17 @@ function DomResizeListener(dom, callback) {
     }
   }
 
- // public method: remove dom listener
- this.remove = function (target) {
-  var checkIsElement = isElement(target)
-  var targetList = checkIsElement ? doms : callbacks
-  var index = targetList.indexOf(target)
-  while (index > -1) {
-    doms.splice(index, 1)
-    callbacks.splice(index, 1)
-    index = targetList.indexOf(target)
+  // public method: remove dom listener
+  this.remove = function (target) {
+    var checkIsElement = isElement(target)
+    var targetList = checkIsElement ? doms : callbacks
+    var index = targetList.indexOf(target)
+    while (index > -1) {
+      doms.splice(index, 1)
+      callbacks.splice(index, 1)
+      index = targetList.indexOf(target)
+    }
   }
-}
 
   // public method: remove all listener
   this.clear = function () {

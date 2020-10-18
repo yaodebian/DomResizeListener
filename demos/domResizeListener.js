@@ -1,7 +1,7 @@
 // excute when the dom resize
 function resizeCall (width, height, dom, callback) {
-  let tempWidth = dom.clientWidth
-  let tempHeight = dom.clientHeight
+  var tempWidth = dom.clientWidth
+  var tempHeight = dom.clientHeight
 
   if (tempWidth !== width || tempHeight !== height) {
     callback({
@@ -14,9 +14,9 @@ function resizeCall (width, height, dom, callback) {
 }
 
 // Dom Resize Watcher Script
-function domResizeListener(dom, callback) {
-  let width = ''
-  let height = ''
+function domResizeListener (dom, callback) {
+  var width = ''
+  var height = ''
 
   // first, get the initial width and height
   requestAnimationFrame(resizeCall.bind(null, width, height, dom, callback))
