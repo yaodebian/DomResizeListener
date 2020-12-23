@@ -18,6 +18,8 @@ function DomResizeListener (dom, callback) {
   // private attribute
   var doms = []
   var callbacks = []
+  var widths = []
+  var heights = []
 
   // private method: if size change, excute callback
   function resizeCall (widths, heights, doms, callbacks) {
@@ -43,11 +45,7 @@ function DomResizeListener (dom, callback) {
   }
 
   // private method: init watcher
-  function init (doms, callbacks) {
-    var len = doms.length
-    var widths = new Array(len)
-    var heights = new Array(len)
-
+  function init () {
     // first, get the initial width and height
     requestAnimationFrame(resizeCall.bind(null, widths, heights, doms, callbacks))
   }
@@ -82,6 +80,8 @@ function DomResizeListener (dom, callback) {
     var len = doms.length
     doms.splice(0, len)
     callbacks.splice(0, len)
+    widths.splice(0, len)
+    heights.splice(0, len)
   }
 
   // add listener
