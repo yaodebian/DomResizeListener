@@ -23,7 +23,8 @@ function DomResizeListener (dom, callback) {
   function resizeCall (widths, heights, doms, callbacks) {
     var len = doms.length
     for (var i = 0; i < len; i++) {
-      var tempWidth = ''; var tempHeight = ''
+      var tempWidth = ''
+      var tempHeight = ''
       try {
         tempWidth = doms[i].clientWidth
         tempHeight = doms[i].clientHeight
@@ -57,7 +58,7 @@ function DomResizeListener (dom, callback) {
     if (!dom || !callback) {
       throw new Error('Attribute required: attribute dom and callback is required')
     }
-    // if dom and callback is not undefined
+    // determine whether dom and callback is effective
     if (isElement(dom) && typeof callback === 'function') {
       doms.push(dom)
       callbacks.push(callback)
