@@ -79,8 +79,9 @@ function DomResizeListener (dom, callback) {
 
   // public method: remove all listener
   this.clear = function () {
-    doms = []
-    callbacks = []
+    var len = doms.length
+    doms.splice(0, len)
+    callbacks.splice(0, len)
   }
 
   // add listener
