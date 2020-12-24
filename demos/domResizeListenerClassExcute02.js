@@ -26,3 +26,7 @@ setTimeout(function () {
   domResizeListener.remove(test)
   domResizeListener.clear()
 }, 10000)
+
+setTimeout(function () {
+  domResizeListener.addListener(boxContentElement, test)
+}, 20000)

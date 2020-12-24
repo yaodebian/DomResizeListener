@@ -24,6 +24,11 @@ function DomResizeListener (dom, callback) {
   // private method: if size change, excute callback
   function resizeCall () {
     var len = doms.length
+    // stop callback when nothing to listen
+    if (len === 0) {
+      return
+    }
+
     for (var i = 0; i < len; i++) {
       var tempWidth = ''
       var tempHeight = ''
@@ -58,8 +63,10 @@ function DomResizeListener (dom, callback) {
     }
     // determine whether dom and callback is effective
     if (isElement(dom) && typeof callback === 'function') {
+      const restart = doms.length === 0
       doms.push(dom)
       callbacks.push(callback)
+      restart && init()
     }
   }
 
