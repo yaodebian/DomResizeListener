@@ -71,6 +71,8 @@ function DomResizeListener (dom, callback) {
     while (index > -1) {
       doms.splice(index, 1)
       callbacks.splice(index, 1)
+      widths.splice(index, 1)
+      heights.splice(index, 1)
       index = targetList.indexOf(target)
     }
   }
