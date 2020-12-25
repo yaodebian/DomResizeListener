@@ -2,13 +2,15 @@
   "name": "dom-resize-listener",
   "version": "0.0.11",
   "description": "A dom resize listener base on javascript.",
-  "main": "lib/domResizeListener.js",
+  "main": "dist/domResizeListener.js",
   "scripts": {
-    "lint": "eslint --fix ./"
+    "lint": "eslint --fix ./",
+    "serve": "webpack-dev-server --open --mode=development --config ./build/webpack.config.js",
+    "build": "npm run lint && cross-env NODE_ENV=production webpack --mode=production --config ./build/webpack.config.js"
   },
   "husky": {
     "hooks": {
-      "pre-commit": "npm run lint"
+      "pre-commit": "npm run build"
     }
   },
   "bin": {
@@ -24,12 +26,27 @@
   "repository": "https://github.com/yaodebian/DomResizeListener.git",
   "license": "MIT",
   "devDependencies": {
+    "@babel/core": "^7.12.9",
+    "@babel/plugin-transform-runtime": "^7.12.1",
+    "@babel/polyfill": "^7.12.1",
+    "@babel/preset-env": "^7.12.7",
+    "@babel/runtime": "^7.12.5",
+    "babel-loader": "^8.2.2",
+    "babel-plugin-transform-remove-console": "^6.9.4",
+    "babel-plugin-transform-remove-debugger": "^6.9.4",
+    "clean-webpack-plugin": "^3.0.0",
+    "cross-env": "^7.0.2",
     "eslint": "^7.11.0",
     "eslint-config-standard": "^14.1.1",
     "eslint-plugin-import": "^2.22.1",
     "eslint-plugin-node": "^11.1.0",
     "eslint-plugin-promise": "^4.2.1",
     "eslint-plugin-standard": "^4.0.1",
-    "husky": "^4.3.0"
+    "html-webpack-plugin": "^4.5.0",
+    "husky": "^4.3.0",
+    "webpack": "4.44.1",
+    "webpack-cli": "3.3.12",
+    "webpack-dev-server": "3.11.0",
+    "webpack-merge": "^5.4.0"
   }
 }

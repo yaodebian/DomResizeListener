@@ -13,6 +13,7 @@ module.exports = {
   rules: {
     'standard/no-callback-literal': 'off',
     'no-unused-vars': 'off',
-    'no-undef': 'off'
+    'no-undef': 'off',
+    'no-debugger': 'off'
   }
 }
