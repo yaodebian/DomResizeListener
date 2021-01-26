@@ -49,7 +49,7 @@ export default function DomResizeListener (dom, callback) {
 
   // public method: add listener of a dom
   this.addListener = function (dom, callback) {
-    // if callback is not undefined, dom is required
+    // both dom and callback is required
     if (!dom || !callback) {
       throw new Error('Attribute required: attribute dom and callback is required')
     }
@@ -84,8 +84,10 @@ export default function DomResizeListener (dom, callback) {
     heights = []
   }
 
-  // add listener
-  this.addListener(dom, callback)
+  if (dom && callback) {
+    // add listener
+    this.addListener(dom, callback)
+  }
 
   init(doms, callbacks)
 }

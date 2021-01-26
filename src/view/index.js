@@ -11,7 +11,8 @@ function resizeCall (sizeInfo) {
   boxContentElement.innerText = 'width: ' + sizeInfo.clientWidth + ', height: ' + sizeInfo.clientHeight
 }
 
-var domResizeListener = new DomResizeListener(boxElement, resizeCall)
+var domResizeListener = new DomResizeListener()
+domResizeListener.addListener(boxElement, resizeCall)
 
 function test () {
   console.log(111)
