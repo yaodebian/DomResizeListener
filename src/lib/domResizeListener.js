@@ -100,6 +100,9 @@ export default function DomResizeListener (dom, callback) {
     }
     if (compatibleWithResizeObserver) {
       resizeObserverInstance.unobserve(tempDom)
+      if (doms.length === 0) {
+        resizeObserverInstance = null
+      }
     }
   }
 
@@ -111,6 +114,7 @@ export default function DomResizeListener (dom, callback) {
     heights = []
     if (compatibleWithResizeObserver) {
       resizeObserverInstance.disconnect()
+      resizeObserverInstance = null
     }
   }
 
