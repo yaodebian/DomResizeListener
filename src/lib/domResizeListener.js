@@ -12,8 +12,22 @@ export default function DomResizeListener (dom, callback) {
   var callbacks = []
   var widths = []
   var heights = []
+  var compatibleWithResizeObserver = typeof ResizeObserver === 'function'
+  var resizeObserverInstance = null
 
-  // private method: if size change, excute callback
+  // private method - ResizeObserver: if size change, excute callback
+  function resizeObserverCall (entries) {
+    var len = entries.length
+    for (var i = 0; i < len; i++) {
+      for (var j = 0; j < doms.length; j++) {
+        if (entries[i].target === doms[j]) {
+          callbacks[j](doms[j])
+        }
+      }
+    }
+  }
+
+  // private method - requestAnimationFrame: if size change, excute callback
   function resizeCall () {
     var len = doms.length
     // stop callback when nothing to listen
@@ -55,11 +69,18 @@ export default function DomResizeListener (dom, callback) {
     }
     // determine whether dom and callback is effective
     if (isElement(dom) && typeof callback === 'function') {
-      const restart = doms.length === 0
+      var restart = doms.length === 0
+      var tempIndex = doms.indexOf(dom)
       doms.push(dom)
       callbacks.push(callback)
       widths.push(0)
       heights.push(0)
+      // if compatible with ResizeObserver
+      if (compatibleWithResizeObserver && tempIndex === -1) {
+        resizeObserverInstance = resizeObserverInstance || new ResizeObserver(resizeObserverCall)
+        resizeObserverInstance.observe(dom)
+        return
+      }
       restart && init()
     }
   }
@@ -69,12 +90,16 @@ export default function DomResizeListener (dom, callback) {
     var checkIsElement = isElement(target)
     var targetList = checkIsElement ? doms : callbacks
     var index = targetList.indexOf(target)
+    var tempDom = doms[index]
     while (index > -1) {
       doms.splice(index, 1)
       callbacks.splice(index, 1)
       widths.splice(index, 1)
       heights.splice(index, 1)
       index = targetList.indexOf(target)
+    }
+    if (compatibleWithResizeObserver) {
+      resizeObserverInstance.unobserve(tempDom)
     }
   }
 
@@ -84,6 +109,9 @@ export default function DomResizeListener (dom, callback) {
     callbacks = []
     widths = []
     heights = []
+    if (compatibleWithResizeObserver) {
+      resizeObserverInstance.disconnect()
+    }
   }
 
   if (dom && callback) {
