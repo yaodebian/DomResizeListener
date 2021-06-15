@@ -58,6 +58,8 @@ export default function DomResizeListener (dom, callback) {
       const restart = doms.length === 0
       doms.push(dom)
       callbacks.push(callback)
+      widths.push(0)
+      heights.push(0)
       restart && init()
     }
   }
@@ -88,6 +90,4 @@ export default function DomResizeListener (dom, callback) {
     // add listener
     this.addListener(dom, callback)
   }
-
-  init(doms, callbacks)
 }
