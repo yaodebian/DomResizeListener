@@ -1,24 +1,23 @@
-import '../lib/requestAnimationFrame'
 import DomResizeListener from '../lib/domResizeListener'
 
 // get the target element and watch it's size change
-var boxElement = document.getElementById('box')
-var boxContentElement = document.getElementById('box-content')
+const boxElement: HTMLElement = document.getElementById('box') as HTMLElement
+const boxContentElement: HTMLElement = document.getElementById('box-content') as HTMLElement
 
 // resize callback
-function resizeCall (sizeInfo) {
-  var boxContentElement = document.getElementById('box-content')
-  boxContentElement.innerText = 'width: ' + sizeInfo.clientWidth + ', height: ' + sizeInfo.clientHeight
+function resizeCall (sizeInfo: HTMLElement): void {
+  const boxContentElement = document.getElementById('box-content')
+  boxContentElement && (boxContentElement.innerText = 'width: ' + sizeInfo.clientWidth + ', height: ' + sizeInfo.clientHeight)
 }
 
-var domResizeListener = new DomResizeListener()
+const domResizeListener = new DomResizeListener()
 domResizeListener.addListener(boxElement, resizeCall)
 
-function test () {
-  console.log(111)
+function test (): void {
+  console.log('111')
 }
 
-function test2 () {
+function test2 (): void {
   console.log(222)
 }
 

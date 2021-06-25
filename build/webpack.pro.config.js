@@ -2,7 +2,7 @@ const path = require('path')
 const { CleanWebpackPlugin } = require('clean-webpack-plugin')
 
 module.exports = {
-  entry: './src/lib/domResizeListener.js',
+  entry: './src/lib/domResizeListener.ts',
   output: {
     library: 'DomResizeListener',
     libraryTarget: 'umd',
@@ -11,7 +11,5 @@ module.exports = {
     sourceMapFilename: 'domResizeListener.map', // customize the filenames of generated Source Maps
     libraryExport: 'default'
   },
-  plugins: [
-    new CleanWebpackPlugin()
-  ]
+  plugins: [new CleanWebpackPlugin()]
 }

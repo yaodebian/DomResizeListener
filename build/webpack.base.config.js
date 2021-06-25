@@ -1,12 +1,13 @@
 module.exports = {
+  resolve: {
+    extensions: ['.js', '.ts', '.tsx']
+  },
   module: {
     rules: [
       {
-        test: /\.js$/,
+        test: /\.tsx?$/i,
         exclude: /node_modules/,
-        use: {
-          loader: 'babel-loader'
-        }
+        use: ['babel-loader', 'ts-loader']
       }
     ]
   }

@@ -4,7 +4,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin')
 module.exports = {
   devtool: 'source-map',
   entry: {
-    index: './src/view/index.js'
+    index: './src/view/index.ts'
   },
   output: {
     library: 'DomResizeListener',
